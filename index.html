@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Malak Serag Ibrahim — Computer Engineer</title>
+<meta name="description" content="Computer Engineering portfolio of Malak Serag Ibrahim — building across hardware and software. Cairo, Egypt." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0b0c11;
+    --panel:#14161f;
+    --panel-2:#181b26;
+    --ink:#e9eaf0;
+    --muted:#9a9db0;
+    --faint:#6b6e82;
+    --line:rgba(255,255,255,.07);
+    --line-2:rgba(255,255,255,.12);
+    --indigo:#7c6cff;
+    --indigo-soft:#a99bff;
+    --violet:#b07bff;
+    --glow:rgba(124,108,255,.16);
+    --r:16px;
+    --ease:cubic-bezier(.22,1,.36,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(600px circle at 80% -5%,rgba(124,108,255,.10),transparent 60%),
+      radial-gradient(500px circle at 0% 25%,rgba(176,123,255,.07),transparent 55%);}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--indigo);color:#fff}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+  .mono{font-family:'JetBrains Mono',monospace}
+  .accent{color:var(--indigo-soft)}
+
+  /* nav */
+  header.nav{position:sticky;top:0;z-index:100;backdrop-filter:saturate(140%) blur(2px);
+    transition:background .4s var(--ease),border-color .4s var(--ease),backdrop-filter .4s var(--ease);
+    border-bottom:1px solid transparent}
+  header.nav.scrolled{background:rgba(11,12,17,.82);backdrop-filter:saturate(140%) blur(12px);border-bottom:1px solid var(--line)}
+  .nav-in{max-width:1080px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
+  .brand{font-family:'Sora';font-weight:800;letter-spacing:-.01em;font-size:1.02rem;display:flex;align-items:center;gap:9px}
+  .brand .pip{width:9px;height:9px;border-radius:50%;background:var(--indigo);box-shadow:0 0 12px var(--indigo)}
+  .nav-links{display:flex;gap:26px;font-size:.9rem}
+  .nav-links a{color:var(--muted);transition:color .25s}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-btn{font-size:.86rem;font-weight:600;padding:9px 16px;border-radius:30px;background:var(--indigo);color:#fff;transition:.3s var(--ease)}
+  .nav-btn:hover{background:#6a59f5;transform:translateY(-1px)}
+  @media(max-width:760px){.nav-links{display:none}}
+
+  /* hero */
+  .hero{padding:88px 0 60px}
+  .status{display:inline-flex;align-items:center;gap:9px;font-size:.8rem;color:var(--muted);
+    border:1px solid var(--line-2);border-radius:30px;padding:6px 14px;margin-bottom:26px}
+  .status .dot{width:8px;height:8px;border-radius:50%;background:#54e6a0;box-shadow:0 0 8px #54e6a0;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .hero h1{font-family:'Sora';font-weight:800;font-size:clamp(2.4rem,6vw,4.3rem);line-height:1.04;letter-spacing:-.025em;max-width:16ch}
+  .hero h1 .g{background:linear-gradient(100deg,var(--indigo-soft),var(--violet));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .hero .role{margin-top:14px;font-family:'JetBrains Mono';font-size:.98rem;color:var(--indigo-soft);letter-spacing:.02em}
+  .hero .bio{margin-top:24px;font-size:1.12rem;color:var(--muted);max-width:60ch}
+  .hero .links{margin-top:34px;display:flex;flex-wrap:wrap;gap:12px}
+  .lnk{display:inline-flex;align-items:center;gap:8px;font-size:.92rem;font-weight:500;
+    border:1px solid var(--line-2);border-radius:12px;padding:11px 18px;color:var(--ink);transition:.28s var(--ease);background:var(--panel)}
+  .lnk:hover{border-color:var(--indigo);background:var(--panel-2);transform:translateY(-2px)}
+  .lnk.primary{background:var(--indigo);border-color:var(--indigo)}
+  .lnk.primary:hover{background:#6a59f5}
+  .lnk svg{width:16px;height:16px}
+
+  /* section scaffolding */
+  section{padding:64px 0;position:relative}
+  .sec-label{display:flex;align-items:center;gap:12px;font-family:'JetBrains Mono';font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--indigo-soft);margin-bottom:14px}
+  .sec-label::before{content:"";width:26px;height:1px;background:var(--indigo)}
+  h2.sec{font-family:'Sora';font-weight:700;font-size:clamp(1.7rem,3.6vw,2.5rem);letter-spacing:-.02em;margin-bottom:8px}
+  .sec-intro{color:var(--muted);max-width:62ch;margin-bottom:38px}
+
+  /* skills matrix */
+  .matrix{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .mcard{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:24px;transition:border-color .3s,transform .3s var(--ease)}
+  .mcard:hover{border-color:var(--line-2);transform:translateY(-3px)}
+  .mcard h3{font-size:.82rem;font-family:'JetBrains Mono';letter-spacing:.1em;text-transform:uppercase;color:var(--indigo-soft);margin-bottom:16px;display:flex;align-items:center;gap:9px}
+  .mcard h3 .ic{font-size:1rem}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:.84rem;background:var(--panel-2);border:1px solid var(--line);border-radius:8px;padding:6px 11px;color:var(--ink);transition:.25s}
+  .mcard:hover .chip{border-color:var(--line-2)}
+  @media(max-width:680px){.matrix{grid-template-columns:1fr}}
+
+  /* projects */
+  .proj{background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-bottom:26px;transition:border-color .35s}
+  .proj:hover{border-color:var(--line-2)}
+  .proj-top{padding:30px 30px 0;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:flex-start}
+  .proj-id{font-family:'JetBrains Mono';font-size:.78rem;color:var(--faint);letter-spacing:.12em}
+  .proj h3{font-family:'Sora';font-weight:700;font-size:1.5rem;letter-spacing:-.01em}
+  .proj .tagline{color:var(--indigo-soft);font-size:.96rem;margin-top:4px}
+  .proj .badges{display:flex;gap:8px;flex-wrap:wrap}
+  .badge{font-family:'JetBrains Mono';font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line-2);border-radius:30px;padding:5px 11px}
+  .proj-body{padding:22px 30px 30px;display:grid;grid-template-columns:1.5fr 1fr;gap:30px}
+  .blk-h{font-family:'JetBrains Mono';font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--indigo-soft);margin-bottom:9px}
+  .blk + .blk{margin-top:22px}
+  .blk p{color:var(--muted);font-size:.97rem}
+  .arch{background:var(--panel-2);border:1px solid var(--line);border-radius:14px;padding:20px;align-self:start}
+  .arch .split{margin-bottom:16px}
+  .arch .split:last-child{margin-bottom:0}
+  .arch .sl{font-size:.72rem;font-family:'JetBrains Mono';color:var(--faint);text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px}
+  .arch .chips .chip{background:var(--panel);font-size:.78rem}
+  .metrics{list-style:none;margin-top:4px}
+  .metrics li{display:flex;gap:11px;align-items:flex-start;color:var(--ink);font-size:.95rem;padding:5px 0}
+  .metrics li::before{content:"▹";color:var(--indigo-soft);font-size:.9rem;line-height:1.5}
+  .proj-foot{border-top:1px solid var(--line);padding:16px 30px;display:flex;gap:18px;flex-wrap:wrap}
+  .proj-foot a{font-size:.86rem;color:var(--muted);display:inline-flex;align-items:center;gap:7px;transition:color .25s}
+  .proj-foot a:hover{color:var(--indigo-soft)}
+  .proj-foot svg{width:15px;height:15px}
+  @media(max-width:760px){.proj-body{grid-template-columns:1fr;gap:22px}.proj-top,.proj-body,.proj-foot{padding-left:22px;padding-right:22px}}
+
+  /* additional projects strip */
+  .more{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .more a{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;transition:.3s var(--ease)}
+  .more a:hover{border-color:var(--indigo);transform:translateY(-2px)}
+  .more h4{font-size:1.02rem;font-family:'Sora';font-weight:600;margin-bottom:4px}
+  .more p{color:var(--muted);font-size:.86rem}
+  .more .mt{font-family:'JetBrains Mono';font-size:.7rem;color:var(--faint);margin-top:10px;letter-spacing:.05em}
+  @media(max-width:680px){.more{grid-template-columns:1fr}}
+
+  /* experience timeline */
+  .xp{position:relative;border-left:1px solid var(--line-2);margin-left:6px}
+  .xp-item{position:relative;padding:0 0 34px 30px}
+  .xp-item:last-child{padding-bottom:0}
+  .xp-item::before{content:"";position:absolute;left:-5px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--indigo);box-shadow:0 0 0 4px var(--bg)}
+  .xp-head{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:baseline}
+  .xp-head h3{font-family:'Sora';font-weight:600;font-size:1.18rem}
+  .xp-head .when{font-family:'JetBrains Mono';font-size:.8rem;color:var(--faint);white-space:nowrap}
+  .xp-org{color:var(--indigo-soft);font-size:.94rem;margin:2px 0 12px}
+  .xp-item ul{list-style:none}
+  .xp-item ul li{color:var(--muted);font-size:.95rem;padding:4px 0 4px 18px;position:relative}
+  .xp-item ul li::before{content:"–";position:absolute;left:0;color:var(--faint)}
+
+  /* education */
+  .edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:26px}
+  .edu{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:24px}
+  .edu h3{font-family:'Sora';font-weight:600;font-size:1.12rem;margin-bottom:4px}
+  .edu .deg{color:var(--indigo-soft);font-size:.92rem}
+  .edu .meta{color:var(--faint);font-family:'JetBrains Mono';font-size:.8rem;margin-top:10px}
+  @media(max-width:680px){.edu-grid{grid-template-columns:1fr}}
+  .course-h{font-family:'JetBrains Mono';font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--indigo-soft);margin-bottom:14px}
+
+  /* footer / contact */
+  .contact{background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:48px;text-align:center;margin-bottom:48px}
+  .contact h2{font-family:'Sora';font-weight:800;font-size:clamp(1.8rem,4.4vw,2.8rem);letter-spacing:-.02em}
+  .contact p{color:var(--muted);max-width:46ch;margin:14px auto 28px}
+  .contact .links{justify-content:center;display:flex;flex-wrap:wrap;gap:12px}
+  footer{border-top:1px solid var(--line);padding:26px 0 50px}
+  .foot-in{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.82rem;color:var(--faint);font-family:'JetBrains Mono'}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}.status .dot{animation:none}}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a href="#top" class="brand"><span class="pip"></span> Malak Serag</a>
+    <nav class="nav-links">
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+    </nav>
+    <a href="#contact" class="nav-btn">Get in touch</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 1. HERO -->
+  <section class="hero wrap" style="padding-top:64px">
+    <div class="reveal">
+      <span class="status"><span class="dot"></span> Open to internships &amp; new-grad roles · Cairo, EG</span>
+      <h1>Computer engineer, still exploring — <span class="g">building a bit of everything.</span></h1>
+      <p class="bio">I'm Malak Serag Ibrahim — a Computer Engineering student with hands-on experience in software development, data analytics, and system design. Skilled in building web, mobile, and desktop applications and analyzing data to extract insights. Experienced in academic and industry projects and currently exploring software engineering, data analytics, cybersecurity, and DevOps.</p>
+      <div class="links">
+        <a class="lnk primary" href="https://github.com/Malakkserag" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-1.7c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5A11.5 11.5 0 0 0 23.5 12C23.5 5.7 18.3.5 12 .5z"/></svg>
+          GitHub
+        </a>
+        <a class="lnk" href="https://linkedin.com/in/malak-serag-ibrahim" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33 0-3.04-1.85-3.04s-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+          LinkedIn
+        </a>
+        <a class="lnk" href="Malak-Serag-CV.pdf" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15l3 3 3-3"/></svg>
+          Resume
+        </a>
+        <a class="lnk" href="mailto:malakkserag2@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+          Email
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. SKILLS MATRIX -->
+  <section id="skills" class="wrap">
+    <div class="reveal">
+      <p class="sec-label">02 · Stack</p>
+      <h2 class="sec">Technical skills matrix</h2>
+      <p class="sec-intro">A working toolkit that spans the full computer-engineering range — from register-level firmware to production web apps and data pipelines.</p>
+    </div>
+    <div class="matrix">
+      <div class="mcard reveal">
+        <h3><span class="ic">⌨️</span> Languages</h3>
+        <div class="chips"><span class="chip">C</span><span class="chip">C++</span><span class="chip">C#</span><span class="chip">Java</span><span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">SQL</span><span class="chip">8051 Assembly</span><span class="chip">VHDL</span></div>
+      </div>
+      <div class="mcard reveal">
+        <h3><span class="ic">🔌</span> Hardware &amp; MCUs</h3>
+        <div class="chips"><span class="chip">8051 Microcontroller (AT89C51)</span><span class="chip">Arduino</span><span class="chip">MFRC522 RFID</span><span class="chip">EEPROM</span><span class="chip">LCD / Servo interfacing</span><span class="chip">Digital design (FSMs, counters, flip-flops)</span></div>
+      </div>
+      <div class="mcard reveal">
+        <h3><span class="ic">🌐</span> Software, OS &amp; Protocols</h3>
+        <div class="chips"><span class="chip">SPI</span><span class="chip">Serial / UART</span><span class="chip">REST APIs</span><span class="chip">JSON</span><span class="chip">Networking fundamentals</span><span class="chip">GNS3</span><span class="chip">System administration</span><span class="chip">SAP (exposure)</span></div>
+      </div>
+      <div class="mcard reveal">
+        <h3><span class="ic">🧩</span> Web &amp; Mobile</h3>
+        <div class="chips"><span class="chip">Vue.js</span><span class="chip">Nuxt.js</span><span class="chip">Node.js</span><span class="chip">Flutter</span><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">Tailwind CSS</span></div>
+      </div>
+      <div class="mcard reveal">
+        <h3><span class="ic">📊</span> ML &amp; Data Analytics</h3>
+        <div class="chips"><span class="chip">Scikit-learn</span><span class="chip">Pandas</span><span class="chip">Matplotlib</span><span class="chip">Seaborn</span><span class="chip">Linear &amp; Logistic Regression</span><span class="chip">K-Means</span><span class="chip">Feature engineering</span><span class="chip">Model evaluation</span></div>
+      </div>
+      <div class="mcard reveal">
+        <h3><span class="ic">🔐</span> Security &amp; Networking</h3>
+        <div class="chips"><span class="chip">AES-128</span><span class="chip">Cryptography (S-Box, key expansion)</span><span class="chip">GF(2⁸) arithmetic</span><span class="chip">Network security basics</span><span class="chip">Data security principles</span></div>
+      </div>
+      <div class="mcard reveal">
+        <h3><span class="ic">🛠️</span> Design &amp; Dev Tools</h3>
+        <div class="chips"><span class="chip">Proteus</span><span class="chip">Arduino IDE</span><span class="chip">ISE Project Navigator</span><span class="chip">AutoCAD</span><span class="chip">MATLAB</span><span class="chip">OxyPlot</span><span class="chip">Tkinter</span></div>
+      </div>
+      <div class="mcard reveal">
+        <h3><span class="ic">⚙️</span> Workflow</h3>
+        <div class="chips"><span class="chip">Git</span><span class="chip">Postman</span><span class="chip">Jupyter Notebook</span><span class="chip">Data cleaning &amp; visualization</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. FEATURED PROJECTS -->
+  <section id="projects" class="wrap">
+    <div class="reveal">
+      <p class="sec-label">03 · Selected work</p>
+      <h2 class="sec">Featured projects</h2>
+      <p class="sec-intro">Four projects I'm proud of, each told through the problem, the engineering decisions, and what shipped. The full set lives on GitHub.</p>
+    </div>
+
+    <!-- Project 1: RFID -->
+    <article class="proj reveal">
+      <div class="proj-top">
+        <div>
+          <span class="proj-id">PROJECT 01 · June 2026</span>
+          <h3>RFID Access Control System</h3>
+          <p class="tagline">A two-processor smart lock that reads, verifies and grants access in real time.</p>
+        </div>
+        <div class="badges"><span class="badge">Embedded</span><span class="badge">Hardware</span></div>
+      </div>
+      <div class="proj-body">
+        <div>
+          <div class="blk">
+            <p class="blk-h">The problem &amp; engineering challenge</p>
+            <p>A single microcontroller couldn't both poll an RFID reader over SPI and drive a lock, LCD, LEDs and buzzer without timing conflicts. The challenge was to split responsibilities across two processors and keep them in sync through a reliable communication link — while persisting authorized cards so the system survives a power cycle.</p>
+          </div>
+          <div class="blk">
+            <p class="blk-h">Key deliverables</p>
+            <ul class="metrics">
+              <li>Two-processor architecture: Arduino + MFRC522 reads UIDs over SPI; an AT89C51 (8051) drives the lock, LCD, LEDs and buzzer.</li>
+              <li>UID verification against records stored in EEPROM, with auto-enrollment of new cards.</li>
+              <li>Grant/deny decisions exchanged over a serial command link between the two controllers.</li>
+              <li>Full circuit designed and simulated in Proteus before hardware assembly.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="arch">
+          <div class="split">
+            <p class="sl">Hardware</p>
+            <div class="chips"><span class="chip">AT89C51 (8051)</span><span class="chip">Arduino</span><span class="chip">MFRC522 RFID</span><span class="chip">EEPROM</span><span class="chip">Servo lock · LCD</span></div>
+          </div>
+          <div class="split">
+            <p class="sl">Software / Protocols</p>
+            <div class="chips"><span class="chip">8051 Assembly</span><span class="chip">SPI</span><span class="chip">Serial link</span><span class="chip">Proteus</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="proj-foot">
+        <a href="https://github.com/Malakkserag" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-1.7c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5A11.5 11.5 0 0 0 23.5 12C23.5 5.7 18.3.5 12 .5z"/></svg> View repository</a>
+        <a href="https://github.com/Malakkserag" target="_blank" rel="noopener">⬡ Proteus block diagram</a>
+      </div>
+    </article>
+
+    <!-- Project 2: AES -->
+    <article class="proj reveal">
+      <div class="proj-top">
+        <div>
+          <span class="proj-id">PROJECT 02 · June 2026</span>
+          <h3>AES-128 Encryption Simulator</h3>
+          <p class="tagline">A from-scratch AES implementation that you can actually watch encrypt, step by step.</p>
+        </div>
+        <div class="badges"><span class="badge">Security</span><span class="badge">Algorithms</span></div>
+      </div>
+      <div class="proj-body">
+        <div>
+          <div class="blk">
+            <p class="blk-h">The problem &amp; engineering challenge</p>
+            <p>AES is usually a black box hidden inside a library. I wanted to understand — and teach — exactly what happens in each round, which meant implementing the cipher from first principles with no crypto libraries, including arithmetic over the GF(2⁸) finite field, and then making the internal state legible through a live visualization.</p>
+          </div>
+          <div class="blk">
+            <p class="blk-h">Key deliverables</p>
+            <ul class="metrics">
+              <li>Full AES-128 built from scratch: SubBytes, ShiftRows, MixColumns over GF(2⁸), and AddRoundKey.</li>
+              <li>Complete key expansion generating all 11 round keys.</li>
+              <li>Tkinter GUI that renders the 4×4 state matrix after every step and round.</li>
+              <li>A key-expansion mode visualizing RotWord, SubWord, Rcon and the g-function.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="arch">
+          <div class="split">
+            <p class="sl">Core</p>
+            <div class="chips"><span class="chip">Python (no crypto libs)</span><span class="chip">GF(2⁸) arithmetic</span><span class="chip">S-Box / key schedule</span></div>
+          </div>
+          <div class="split">
+            <p class="sl">Interface</p>
+            <div class="chips"><span class="chip">Tkinter GUI</span><span class="chip">State-matrix visualization</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="proj-foot">
+        <a href="https://github.com/Malakkserag" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-1.7c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5A11.5 11.5 0 0 0 23.5 12C23.5 5.7 18.3.5 12 .5z"/></svg> View repository</a>
+        <a href="https://github.com/Malakkserag" target="_blank" rel="noopener">⬡ GUI walkthrough</a>
+      </div>
+    </article>
+
+    <!-- Project 3: News Platform -->
+    <article class="proj reveal">
+      <div class="proj-top">
+        <div>
+          <span class="proj-id">PROJECT 03 · July 2025 · MTS internship</span>
+          <h3>News Platform (Web + Mobile)</h3>
+          <p class="tagline">One content backend powering a responsive website and a native mobile app.</p>
+        </div>
+        <div class="badges"><span class="badge">Full-Stack</span><span class="badge">Mobile</span></div>
+      </div>
+      <div class="proj-body">
+        <div>
+          <div class="blk">
+            <p class="blk-h">The problem &amp; engineering challenge</p>
+            <p>The platform needed to serve the same dynamic, category-filtered content to two very different clients — a Vue web app and a Flutter mobile app — without duplicating logic. The engineering work was designing a clean REST layer that both front-ends could consume, while keeping each interface responsive and real-time.</p>
+          </div>
+          <div class="blk">
+            <p class="blk-h">Key deliverables</p>
+            <ul class="metrics">
+              <li>Full-stack platform with dynamic content rendering, category-based filtering and real-time updates.</li>
+              <li>RESTful APIs designed and integrated as the shared contract between front-end and back-end.</li>
+              <li>Responsive web and mobile interfaces built for accessibility across devices.</li>
+              <li>Delivered as one of 5+ full-stack and mobile applications during the MTS internship.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="arch">
+          <div class="split">
+            <p class="sl">Front-End</p>
+            <div class="chips"><span class="chip">Vue.js (web)</span><span class="chip">Flutter (mobile)</span></div>
+          </div>
+          <div class="split">
+            <p class="sl">Back-End</p>
+            <div class="chips"><span class="chip">Node.js</span><span class="chip">REST APIs</span><span class="chip">JSON</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="proj-foot">
+        <a href="https://github.com/Malakkserag" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-1.7c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5A11.5 11.5 0 0 0 23.5 12C23.5 5.7 18.3.5 12 .5z"/></svg> View repository</a>
+        <a href="https://github.com/Malakkserag" target="_blank" rel="noopener">⬡ Architecture diagram</a>
+      </div>
+    </article>
+
+    <!-- Project 4: Cinema Booking -->
+    <article class="proj reveal">
+      <div class="proj-top">
+        <div>
+          <span class="proj-id">PROJECT 04 · December 2025</span>
+          <h3>Cinema Booking System</h3>
+          <p class="tagline">Real-time seat selection that never double-books, backed by a transactional database.</p>
+        </div>
+        <div class="badges"><span class="badge">Full-Stack</span><span class="badge">Database</span></div>
+      </div>
+      <div class="proj-body">
+        <div>
+          <div class="blk">
+            <p class="blk-h">The problem &amp; engineering challenge</p>
+            <p>Seat booking is a classic concurrency problem: two users must never reserve the same seat. The challenge was modeling seat availability and booking transactions so the database stays consistent under real-time updates, while keeping the selection UI fast and intuitive enough that the flow feels effortless.</p>
+          </div>
+          <div class="blk">
+            <p class="blk-h">Key deliverables</p>
+            <ul class="metrics">
+              <li>Real-time seat selection and reservation management end to end.</li>
+              <li>Back-end logic and database integration managing seat availability, booking transactions and system updates.</li>
+              <li>An intuitive, user-friendly interface that streamlines the full booking journey.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="arch">
+          <div class="split">
+            <p class="sl">Application</p>
+            <div class="chips"><span class="chip">Full-stack web app</span><span class="chip">Real-time updates</span></div>
+          </div>
+          <div class="split">
+            <p class="sl">Data</p>
+            <div class="chips"><span class="chip">Relational database</span><span class="chip">Booking transactions</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="proj-foot">
+        <a href="https://github.com/Malakkserag" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-1.7c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5A11.5 11.5 0 0 0 23.5 12C23.5 5.7 18.3.5 12 .5z"/></svg> View repository</a>
+        <a href="https://github.com/Malakkserag" target="_blank" rel="noopener">⬡ Demo</a>
+      </div>
+    </article>
+
+    <!-- More projects -->
+    <div class="reveal" style="margin-top:40px">
+      <p class="course-h">More on GitHub</p>
+      <div class="more">
+        <a href="https://github.com/Malakkserag" target="_blank" rel="noopener">
+          <h4>ML &amp; Data Analytics</h4>
+          <p>Linear/logistic regression, K-Means segmentation and EDA on real datasets — evaluated with MAE, R², precision, recall and F1.</p>
+          <p class="mt">Python · Pandas · Scikit-learn</p>
+        </a>
+        <a href="https://github.com/Malakkserag" target="_blank" rel="noopener">
+          <h4>Graphing Scientific Calculator</h4>
+          <p>Evaluates complex expressions with real-time function plotting and an interactive, dynamic-input interface.</p>
+          <p class="mt">C# · OxyPlot</p>
+        </a>
+        <a href="https://github.com/Malakkserag" target="_blank" rel="noopener">
+          <h4>Web Applications Suite</h4>
+          <p>A forum, blog, to-do manager and reaction-timer game exploring varied architectures and real-time interaction.</p>
+          <p class="mt">JavaScript · Node.js</p>
+        </a>
+        <a href="https://github.com/Malakkserag" target="_blank" rel="noopener">
+          <h4>Student Management System</h4>
+          <p>CRUD records with file-handling persistence and structured data organization for fast, reliable access.</p>
+          <p class="mt">C++ · File I/O</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. EXPERIENCE -->
+  <section id="experience" class="wrap">
+    <div class="reveal">
+      <p class="sec-label">04 · Where I've worked</p>
+      <h2 class="sec">Experience</h2>
+    </div>
+    <div class="xp reveal">
+      <div class="xp-item">
+        <div class="xp-head">
+          <h3>Full-Stack Developer Intern (Web &amp; Mobile)</h3>
+          <span class="when">Jul 2025 – Aug 2025</span>
+        </div>
+        <p class="xp-org">Misr Technology Services (MTS) · Cairo, Egypt</p>
+        <ul>
+          <li>Developed 5+ full-stack and mobile applications using Vue.js, Node.js and Flutter.</li>
+          <li>Designed RESTful APIs and responsive user interfaces.</li>
+          <li>Managed client-server communication using JSON.</li>
+          <li>Delivered projects including a news platform, forum system and blog.</li>
+        </ul>
+      </div>
+      <div class="xp-item">
+        <div class="xp-head">
+          <h3>IT Trainee</h3>
+          <span class="when">Aug 2025</span>
+        </div>
+        <p class="xp-org">Petrojet · Cairo, Egypt</p>
+        <ul>
+          <li>Gained experience in networking fundamentals and system administration.</li>
+          <li>Simulated networks using GNS3 and explored enterprise infrastructure.</li>
+          <li>Explored SAP systems and IT infrastructure.</li>
+        </ul>
+      </div>
+      <div class="xp-item">
+        <div class="xp-head">
+          <h3>Computer Science OL / IGCSE Teaching Assistant</h3>
+          <span class="when">Jul 2021 – May 2024</span>
+        </div>
+        <p class="xp-org">Rowad College · Cairo, Egypt</p>
+        <ul>
+          <li>Assisted students in algorithms, logic gates and programming concepts.</li>
+          <li>Explained complex technical topics in a simplified, structured manner.</li>
+        </ul>
+      </div>
+      <div class="xp-item">
+        <div class="xp-head">
+          <h3>Math OL / AS IGCSE Teaching Assistant</h3>
+          <span class="when">Nov 2023 – Feb 2024</span>
+        </div>
+        <p class="xp-org">Rowad College · Cairo, Egypt</p>
+        <ul>
+          <li>Supported students in mathematical problem-solving and exam preparation.</li>
+          <li>Strengthened analytical thinking and communication skills through teaching.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. EDUCATION -->
+  <section id="education" class="wrap">
+    <div class="reveal">
+      <p class="sec-label">05 · Education</p>
+      <h2 class="sec">Education &amp; coursework</h2>
+    </div>
+    <div class="edu-grid reveal">
+      <div class="edu">
+        <h3>Arab Academy for Science, Technology &amp; Maritime Transport (AAST)</h3>
+        <p class="deg">B.Sc. in Computer Engineering</p>
+        <p class="meta">Cairo, Egypt · Expected Jan 2028</p>
+      </div>
+      <div class="edu">
+        <h3>Rowad College</h3>
+        <p class="deg">IGCSE Diploma</p>
+        <p class="meta">Cairo, Egypt · 2023</p>
+      </div>
+    </div>
+    <div class="reveal">
+      <p class="course-h">Core coursework &amp; focus areas</p>
+      <div class="chips">
+        <span class="chip">Digital Design (FSMs, Counters, Flip-Flops)</span>
+        <span class="chip">Microcontrollers &amp; Embedded Systems</span>
+        <span class="chip">Computer Architecture</span>
+        <span class="chip">Data Structures &amp; Algorithms</span>
+        <span class="chip">Object-Oriented Programming</span>
+        <span class="chip">Databases</span>
+        <span class="chip">Networks &amp; Network Security</span>
+        <span class="chip">Cryptography</span>
+        <span class="chip">Machine Learning &amp; Data Analytics</span>
+        <span class="chip">Signals &amp; Systems</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="wrap">
+    <div class="contact reveal">
+      <h2>Let's build something.</h2>
+      <p>I'm open to internships, new-grad roles and collaborations across the field — and always up for an interesting problem.</p>
+      <div class="links">
+        <a class="lnk primary" href="mailto:malakkserag2@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+          malakkserag2@gmail.com
+        </a>
+        <a class="lnk" href="https://linkedin.com/in/malak-serag-ibrahim" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="lnk" href="https://github.com/Malakkserag" target="_blank" rel="noopener">GitHub</a>
+        <a class="lnk" href="Malak-Serag-CV.pdf" target="_blank" rel="noopener">Resume</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="wrap">
+    <div class="foot-in">
+      <span>© 2026 Malak Serag Ibrahim</span>
+      <span>Cairo, Egypt · +20 1200255462</span>
+      <span>Computer Engineering</span>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+  // sticky nav background
+  const nav=document.getElementById('nav');
+  const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>20);
+  onScroll();
+  window.addEventListener('scroll',onScroll,{passive:true});
+
+  // reveal on scroll
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const items=document.querySelectorAll('.reveal');
+  if(reduce||!('IntersectionObserver' in window)){
+    items.forEach(el=>el.classList.add('in'));
+  }else{
+    const io=new IntersectionObserver((entries)=>{
+      entries.forEach((e,i)=>{
+        if(e.isIntersecting){
+          const el=e.target;
+          // small stagger for siblings in a grid
+          setTimeout(()=>el.classList.add('in'), Math.min(i*40,160));
+          io.unobserve(el);
+        }
+      });
+    },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+    items.forEach(el=>io.observe(el));
+  }
+</script>
+</body>
+</html>
+                                                                                                             
